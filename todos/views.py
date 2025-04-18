@@ -3,13 +3,15 @@ from .models import Todo
 from .serializers import TodoSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework import permissions
+from rest_framework.filters import SearchFilter, OrderingFilter 
 
 # Create your views here.
 
 class TodoViewSet(viewsets.ModelViewSet):
     serializer_class = TodoSerializer
-    permission_classes = [permissioons.IsAuthenticared]
-    filter_backends = [filter.SearchFilter, filter.OrderingFilter]
+    permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [SearchFilter, OrderingFilter]  
     search_fields = ['title', 'description']
     ordering_fields = ['created_at']
 
@@ -22,6 +24,4 @@ class TodoViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['delete'])
     def delete_all(self, request):
         self.get_queryset().delete()
-        return Response({"message": "Все задачи удалены"})  
-    
-    
+        return Response({"message": "Все задачи удалены"})

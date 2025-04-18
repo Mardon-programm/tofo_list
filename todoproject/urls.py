@@ -19,7 +19,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from todos.views import TodoViewSet
 from users.views import UserCreateAPIView
-from rest_framework.simplejwt.views import TokenObtainPairView, TokenRefreshView # type: ignore
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
 
