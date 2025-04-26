@@ -7,7 +7,6 @@ router = DefaultRouter()
 router.register(r'', UserViewSet, basename='user')
 
 urlpatterns = router.urls + [
-    path('register/', UserViewSet.as_view({'post': 'create'}), name='user-register'),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
